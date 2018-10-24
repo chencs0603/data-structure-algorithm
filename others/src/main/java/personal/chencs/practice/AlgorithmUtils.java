@@ -1,5 +1,9 @@
 package personal.chencs.practice;
 
+import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * 算法工具类
  *
@@ -34,6 +38,58 @@ public class AlgorithmUtils {
             }
         }
         return maxLen;
+    }
+
+    /**
+     * 验证字符串是否符合xml格式
+     *
+     * @param string
+     * @return
+     */
+    public static boolean verifyXmlString(String string) {
+        // 找出所有的元素标签
+        Pattern pattern = Pattern.compile("<\\w+>|</\\w+>");
+        Matcher matcher = pattern.matcher(string);
+
+        Stack<String> stack = new Stack<String>();
+        while (matcher.find()) {
+            String element = matcher.group();
+            String elementName = getElementName(element);
+            // 遇到左标签元素入栈
+            if (isLeftMarker(element)) {
+                stack.push(elementName);
+            } else {
+                // 遇到右标签，则将栈顶元素出栈进行比较，不相同则不合法
+                if(!elementName.equals(stack.pop())){
+                    return false;
+                }
+            }
+        }
+        // 最终栈的元素应该为0
+        if (0 != stack.size()) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 验证字符串是否为左标签
+     *
+     * @param element
+     * @return
+     */
+    private static boolean isLeftMarker(String element) {
+        return !element.contains("/");
+    }
+
+    /**
+     * 获取元素名称
+     *
+     * @param element
+     * @return
+     */
+    private static String getElementName(String element) {
+        return element.replaceAll("<|>|/", "");
     }
 
 }

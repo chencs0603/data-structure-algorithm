@@ -18,5 +18,14 @@ public class TestCases {
         Assert.assertTrue(5 == AlgorithmUtils.maxContinueCharLen("aaassdddddeeeedddd"));
     }
 
+    @Test
+    public void verifyXmlString() {
+        Assert.assertTrue(true == AlgorithmUtils.verifyXmlString("<dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>4.12</version><scope>test</scope></dependency>"));
+        Assert.assertTrue(false == AlgorithmUtils.verifyXmlString("<dependency><groupId>junit<scope></groupId>test</scope></dependency>"));
+        Assert.assertTrue(false == AlgorithmUtils.verifyXmlString("<dependency><groupId>junit</groupId>test</scope></dependency>"));
+        Assert.assertTrue(false == AlgorithmUtils.verifyXmlString("<dependency><groupId>junit</groupId>test</scope></dependency2>"));
+        Assert.assertTrue(false == AlgorithmUtils.verifyXmlString("<dependency><groupId>junit</groupId>test</scope></dependency/>"));
+    }
+
 
 }
