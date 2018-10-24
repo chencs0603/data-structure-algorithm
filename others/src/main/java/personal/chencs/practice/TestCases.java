@@ -21,6 +21,7 @@ public class TestCases {
     @Test
     public void verifyXmlString() {
         Assert.assertTrue(true == AlgorithmUtils.verifyXmlString("<dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>4.12</version><scope>test</scope></dependency>"));
+        Assert.assertTrue(true == AlgorithmUtils.verifyXmlString("<dependency id = \"myid\"><groupId>junit</groupId><artifactId>junit</artifactId><version>4.12</version><scope>test</scope></dependency>"));
         Assert.assertTrue(false == AlgorithmUtils.verifyXmlString("<dependency><groupId>junit<scope></groupId>test</scope></dependency>"));
         Assert.assertTrue(false == AlgorithmUtils.verifyXmlString("<dependency><groupId>junit</groupId>test</scope></dependency>"));
         Assert.assertTrue(false == AlgorithmUtils.verifyXmlString("<dependency><groupId>junit</groupId>test</scope></dependency2>"));

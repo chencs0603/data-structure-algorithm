@@ -48,7 +48,8 @@ public class AlgorithmUtils {
      */
     public static boolean verifyXmlString(String string) {
         // 找出所有的元素标签
-        Pattern pattern = Pattern.compile("<\\w+>|</\\w+>");
+//        Pattern pattern = Pattern.compile("<\\w+>|</\\w+>");
+        Pattern pattern = Pattern.compile("<.*?>");
         Matcher matcher = pattern.matcher(string);
 
         Stack<String> stack = new Stack<String>();
@@ -79,7 +80,8 @@ public class AlgorithmUtils {
      * @return
      */
     private static boolean isLeftMarker(String element) {
-        return !element.contains("/");
+//        return !element.contains("/");
+        return element.charAt(1) != '/';
     }
 
     /**
@@ -89,7 +91,8 @@ public class AlgorithmUtils {
      * @return
      */
     private static String getElementName(String element) {
-        return element.replaceAll("<|>|/", "");
+//        return element.replaceAll("<|>|/", "");
+        return element.replaceAll("<|>|/", "").split(" ")[0];
     }
 
 }
