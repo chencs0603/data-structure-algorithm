@@ -11,6 +11,10 @@ public class SingleLinkedList<T> {
 
     private SingleLinkedNode<T> head;
 
+    public SingleLinkedNode<T> getHead() {
+        return head;
+    }
+
     public void insertToTail(T data) {
         SingleLinkedNode<T> newNode = new SingleLinkedNode<T>(data, null);
 
